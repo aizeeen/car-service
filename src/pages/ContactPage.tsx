@@ -299,7 +299,9 @@ const ContactPage = () => {
                         <Checkbox 
                           id="agreement"
                           checked={formData.agreement}
-                          onCheckedChange={handleCheckboxChange}
+                          onCheckedChange={(checked: boolean) => {
+                            setFormData(prev => ({ ...prev, agreement: checked }));
+                          }}
                         />
                         <Label htmlFor="agreement" className="text-sm">
                           I agree to the terms and conditions
