@@ -9,10 +9,23 @@ import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { Checkbox } from '@/components/ui/checkbox';
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  inquiryType: string;
+  subject: string;
+  message: string;
+  preferredContact: string;
+  budget: string;
+  agreement: boolean;
+}
 
 const ContactPage = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -21,6 +34,7 @@ const ContactPage = () => {
     message: '',
     preferredContact: 'email',
     budget: '',
+    agreement: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -53,8 +67,13 @@ const ContactPage = () => {
         message: '',
         preferredContact: 'email',
         budget: '',
+        agreement: false
       });
     }, 1500);
+  };
+
+  const handleCheckboxChange = (checked: boolean) => {
+    setFormData(prev => ({ ...prev, agreement: checked }));
   };
 
   const fadeIn = {
@@ -273,6 +292,16 @@ const ContactPage = () => {
                           </SelectContent>
                         </Select>
                       </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <Label>
+                        <Checkbox 
+                          checked={formData.agreement}
+                          onCheckedChange={handleCheckboxChange}
+                        />
+                        I agree to the terms and conditions
+                      </Label>
                     </div>
 
                     <Button type="submit" className="w-full" disabled={isSubmitting}>

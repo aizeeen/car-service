@@ -17,7 +17,15 @@ interface Car {
   id: string;
   name: string;
   price: number;
-  // ... add other car properties
+  image: string;
+  location: string;
+  year: number;
+  mileage: string;
+  engine: string;
+  transmission: string;
+  condition: string;
+  type: 'import' | 'export';
+  make: string;
 }
 
 const CarsPage = () => {
@@ -419,7 +427,7 @@ const CarsPage = () => {
   );
 };
 
-const CarCard = ({ car, index }) => {
+const CarCard = ({ car, index }: { car: Car; index: number }) => {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
