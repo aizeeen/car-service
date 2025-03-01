@@ -13,6 +13,13 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { allCars } from '@/data/cars';
 
+interface Car {
+  id: string;
+  name: string;
+  price: number;
+  // ... add other car properties
+}
+
 const CarsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
@@ -42,7 +49,7 @@ const CarsPage = () => {
     }
   };
 
-  const handleFilterChange = (key, value) => {
+  const handleFilterChange = (key: string, value: string) => {
     setFilters({ ...filters, [key]: value });
   };
 
@@ -234,8 +241,8 @@ const CarsPage = () => {
                         max={500000}
                         step={5000}
                         onValueChange={(value) => {
-                          handleFilterChange('minPrice', value[0]);
-                          handleFilterChange('maxPrice', value[1]);
+                          handleFilterChange('minPrice', value[0].toString());
+                          handleFilterChange('maxPrice', value[1].toString());
                         }}
                       />
                     </div>
@@ -256,8 +263,8 @@ const CarsPage = () => {
                         max={2025}
                         step={1}
                         onValueChange={(value) => {
-                          handleFilterChange('minYear', value[0]);
-                          handleFilterChange('maxYear', value[1]);
+                          handleFilterChange('minYear', value[0].toString());
+                          handleFilterChange('maxYear', value[1].toString());
                         }}
                       />
                     </div>
@@ -321,10 +328,10 @@ const CarsPage = () => {
                 <div className="mb-6 flex flex-wrap gap-2">
                   {Object.entries(filters).map(([key, value]) => {
                     if (value === 'all' || 
-                        (key === 'minPrice' && value === 0) || 
-                        (key === 'maxPrice' && value === 500000) ||
-                        (key === 'minYear' && value === 2010) ||
-                        (key === 'maxYear' && value === 2025)) {
+                        (key === 'minPrice' && value === '0') || 
+                        (key === 'maxPrice' && value === '500000') ||
+                        (key === 'minYear' && value === '2010') ||
+                        (key === 'maxYear' && value === '2025')) {
                       return null;
                     }
                     
@@ -342,11 +349,11 @@ const CarsPage = () => {
                           className="ml-2 h-3 w-3 cursor-pointer" 
                           onClick={() => {
                             if (key === 'maxPrice') {
-                              handleFilterChange('minPrice', 0);
-                              handleFilterChange('maxPrice', 500000);
+                              handleFilterChange('minPrice', '0');
+                              handleFilterChange('maxPrice', '500000');
                             } else if (key === 'maxYear') {
-                              handleFilterChange('minYear', 2010);
-                              handleFilterChange('maxYear', 2025);
+                              handleFilterChange('minYear', '2010');
+                              handleFilterChange('maxYear', '2025');
                             } else {
                               handleFilterChange(key, 'all');
                             }
