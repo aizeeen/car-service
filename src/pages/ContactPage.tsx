@@ -295,13 +295,16 @@ const ContactPage = () => {
                     </div>
 
                     <div className="space-y-3">
-                      <Label>
+                      <div className="flex items-center space-x-2">
                         <Checkbox 
+                          id="agreement"
                           checked={formData.agreement}
                           onCheckedChange={handleCheckboxChange}
                         />
-                        I agree to the terms and conditions
-                      </Label>
+                        <Label htmlFor="agreement" className="text-sm">
+                          I agree to the terms and conditions
+                        </Label>
+                      </div>
                     </div>
 
                     <Button type="submit" className="w-full" disabled={isSubmitting}>

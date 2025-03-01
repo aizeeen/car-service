@@ -387,8 +387,8 @@ const CarsPage = () => {
                     animate="visible"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                   >
-                    {filteredCars.map((car, index) => (
-                      <CarCard key={car.id} car={car} index={index} />
+                    {filteredCars.map((car) => (
+                      <CarCard key={car.id} car={car} />
                     ))}
                   </motion.div>
                 </TabsContent>
@@ -400,8 +400,8 @@ const CarsPage = () => {
                     animate="visible"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                   >
-                    {importCars.map((car, index) => (
-                      <CarCard key={car.id} car={car} index={index} />
+                    {importCars.map((car) => (
+                      <CarCard key={car.id} car={car} />
                     ))}
                   </motion.div>
                 </TabsContent>
@@ -413,8 +413,8 @@ const CarsPage = () => {
                     animate="visible"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                   >
-                    {exportCars.map((car, index) => (
-                      <CarCard key={car.id} car={car} index={index} />
+                    {exportCars.map((car) => (
+                      <CarCard key={car.id} car={car} />
                     ))}
                   </motion.div>
                 </TabsContent>
@@ -427,7 +427,7 @@ const CarsPage = () => {
   );
 };
 
-const CarCard = ({ car, index }: { car: Car; index: number }) => {
+const CarCard = ({ car }: { car: Car }) => {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
